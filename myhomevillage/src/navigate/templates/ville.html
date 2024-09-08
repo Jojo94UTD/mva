@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHomeVillage - {{ ville.nomVille }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f5f5dc; /* Fond beige pour le body */
+        }
+        header {
+            background-color: #006400; /* Vert foncé */
+            color: black;
+            padding: 15px;
+            text-align: left;
+        }
+        header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        header ul li {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        header ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header ul li a:hover {
+            text-decoration: underline;
+        }
+        header ul li:last-child {
+            margin-left: auto; /* Pousse le dernier élément (Mon compte) à droite */
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f5deb3; /* Beige foncé */
+            color: black;
+        }
+        .container {
+            background-color: #deb887; /* Beige foncé */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto; /* Centre la div container */
+        }
+        .container h1 {
+            font-size: 2em;
+            margin-top: 0;
+            color: black;
+        }
+        .gardien {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f5deb3; /* Beige clair */
+            border-radius: 8px;
+        }
+        .gardien h2 {
+            margin-top: 0;
+            color: black;
+        }
+        .gardien-content {
+            display: flex;
+            margin-top: 20px;
+        }
+        .photo-gardien {
+            flex: 2;
+            padding: 10px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .photo-gardien img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease; /* Transition pour l'agrandissement */
+        }
+        .info-gardien {
+            flex: 3;
+            padding: 10px;
+        }
+        .info-gardien p {
+            margin: 5px 0;
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Styles pour l'agrandissement de l'image en plein écran */
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .fullscreen-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <ul>
+        <li><a href="{% url 'navigate-index' %}">Accueil</a></li>
+        <li><a href="{% url 'repertoire' %}">Répertoire</a></li>
+        <li><a href="{% url 'contribuer' %}">Contribuer</a></li>
+        <li><a href="#">Faire un don</a></li>
+        <li><a href="#">Mon compte</a></li>
+    </ul>
+</header>
+
+<main>
+    <div class="container">
+        <h1>Localité de {{ ville.nomVille }}</h1>
+        <h2>Langue parlée: Le {{ ville.nomVille }}</h2>
+        <div class="gardien">
+            <h2>Informations sur le gardien de la langue</h2>
+            <div class="gardien-content">
+                <div class="photo-gardien">
+                    {% load static %}
+                    <img src="{% static ville.photoGardienPath %}" alt="Photo du gardien" id="gardien-img">
+                </div>
+                <div class="info-gardien">
+                    <p><strong>Nom:</strong> {{ ville.nomGardienLangue }}</p>
+                    <p><strong>Prénom:</strong> {{ ville.prenomGardienLangue }}</p>
+                        <p><strong>Qualité:</strong> {{ ville.qualite }}</p>
+                    <p><strong>Téléphone:</strong> {{ ville.numTelGardien }}</p>
+                    <p><strong>Email:</strong> {{ ville.mailGardien }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Overlay pour l'affichage plein écran de l'image -->
+<div class="fullscreen-overlay" id="fullscreen-overlay">
+    <span class="close-button" id="close-button">&times;</span>
+    <img src="" alt="Agrandissement de la photo" id="fullscreen-img">
+</div>
+
+<footer>
+    <p>©capitalentrepreneurs</p>
+</footer>
+
+<script>
+    // JavaScript pour gérer l'agrandissement de l'image
+    document.getElementById('gardien-img').onclick = function() {
+        var overlay = document.getElementById('fullscreen-overlay');
+        var fullscreenImg = document.getElementById('fullscreen-img');
+        fullscreenImg.src = this.src;
+        overlay.style.display = 'flex';
+    };
+
+    // Ferme l'overlay en cliquant sur la croix
+    document.getElementById('close-button').onclick = function() {
+        var overlay = document.getElementById('fullscreen-overlay');
+        overlay.style.display = 'none';
+    };
+
+    // Ferme l'overlay en cliquant n'importe où dans l'overlay
+    document.getElementById('fullscreen-overlay').onclick = function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    };
+</script>
+
+</body>
+</html>

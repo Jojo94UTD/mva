@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Division gauche */
+.sidebar {
+    width: 40%; /* 2/5 de la largeur de l'écran */
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background-color: #bbb;
+}
+
+/* Division droite */
+.map-container {
+    width: 60%; /* 3/5 de la largeur de l'écran */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Style du body */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

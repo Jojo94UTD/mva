@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYHOMEVILLAGE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>MYHOMEVILLAGE</h1>
+        <div class="button-container">
+        <a href="{% url 'navigate-index' %}" class="custom-button">Naviguez ici</a>
+        <a href="{% url 'login-register' %}" class="custom-button">Se connecter / S'inscrire</a>
+        </div>
+    </div>
+</body>
+</html>

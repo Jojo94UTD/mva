@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHomeVillage - Accueil</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f5f5dc; /* Fond beige pour le body */
+        }
+        header {
+            background-color: #006400; /* Vert foncé */
+            color: black;
+            padding: 15px;
+            text-align: left;
+        }
+        header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        header ul li {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        header ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header ul li a:hover {
+            text-decoration: underline;
+        }
+        header ul li:last-child {
+            margin-left: auto; /* Pousse le dernier élément (Mon compte) à droite */
+        }
+        main {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f5deb3; /* Beige foncé */
+        }
+        .content-left {
+            flex: 7; /* Cette div occupe environ 7/10 du main en largeur */
+            background-color: #deb887; /* Beige foncé */
+            color: black;
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 70%; /* Limite à 70% pour maintenir la proportion */
+        }
+        .content-left h1 {
+            font-size: 2em;
+            margin-top: 0;
+            color: black;
+        }
+        .content-right {
+            flex: 3; /* Cette div occupe environ 3/10 du main en largeur */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+        .content-right button {
+            background-color: #FFFF00; /* Jaune */
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .content-right button:hover {
+            background-color: #FFD700; /* Jaune doré */
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <ul>
+        <li><a href="{% url 'navigate-index' %}">Accueil</a></li>
+        <li><a href="{% url 'repertoire' %}">Répertoire</a></li>
+        <li><a href="{% url 'contribuer' %}">Contribuer</a></li>
+        <li><a href="{% url 'avis' %}">Avis</a></li>
+        <li><a href="#">Mon compte</a></li>
+    </ul>
+</header>
+
+<main>
+    <div class="content-left">
+        <h1>Bienvenue sur My Home Village</h1>
+        <!-- Insérez ici le texte que vous remplirez via PyCharm -->
+
+        <p>
+            <br><br>
+            L’Afrique est riche de nombreuses cultures, et de nombreuses langues.
+Il n’existe à ce jour aucun répertoire connu et accessible de la totalité des langues africaines.
+L’objectif de MYVILLAGE est de répertorier la totalité et l’exhaustivité des langues africaines sur un accès internet.
+<br><br>
+Mais plus que le simple décompte de l’existence des langues, MYVILLAGE souhaite associer chaque langue à un gardien de la langue. Ce gardien de la langue peut être une institution étatique ou traditionnelle, ou ne pas exister. C’est le problème des langues qui risquent de se perdre.
+L’obtention de ces données est un préalable, pouvant permettre à terme plusieurs actions :
+Sauvegarde des langues menacées de disparation,
+Apprentissage des langues aux enfants de la diaspora ne grandissant pas dans le cercle d’apprentissage naturel,
+Développement d’outils de traductions informatisées, pouvant faire l’objet de monétisation.
+<br><br>
+A plus long terme, MYVILLAGE peut s’ouvrir vers d’autres éléments culturels au-delà de la langue, comme les œuvres d’art, la cuisine, etc…
+Mais pour son lancement, MYVILLAGE se concentre sur :
+Le développement de l’outil permettant de répertorier les langues ainsi que les gardiens de la langue
+Le travail d’obtention des données fiables, ainsi que le processus de mise à jour régulier
+        </p>
+    </div>
+    <div class="content-right">
+        <button id="view-map" onclick="window.location.href='{% url 'carte' %}'">Voir la carte</button>
+    </div>
+</main>
+
+<footer>
+    <p>©capitalentrepreneurs</p>
+</footer>
+
+</body>
+</html>
+
+
+
